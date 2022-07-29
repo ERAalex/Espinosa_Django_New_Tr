@@ -26,37 +26,84 @@ DATA = {
 }
 
 
-# ----  Вариант без создания шаблона -------
+# ----  Вариант без использования или создания шаблона - работает, проверил -------
 
 
-def dishes(request, choose):
+#def dishes(request, choose):
+#    try:
+#        total_persons = int(request.GET['servings'])
+#    except:
+#        total_persons = 1
+#
+# короткий путь - servings = int(request.GET.get('servings', '1'))
+#
+#    list_f = []
+#    full_text = ''
+#   for key, value in DATA.items():
+#        if key == choose:
+#            count = 0
+#            for key_food, total in value.items():
+#                count += 1                                        # нужен для красивого вывода, каждый пункт будет  1)   2)   3)
+#                count_str = '|' + str(count) + ').  '
+#                total_f_int = round((total * total_persons),  2)    # отбросим после запятой числа (а то выдает много)
+#                total_f_str = str(total_f_int)
+#                list_f += count_str + key_food + ' в количестве: ' + total_f_str + '  .'
+#
+#           full_text += ''.join(list_f)     # собираем все в 1 строку для красивого и удобного вывода
+
+
+#   return HttpResponse(f'Вы выбрали блюдо {choose} для готовки Вам необходимо: \n {full_text}')
+
+
+
+
+
+def index(request, decision):
     try:
         total_persons = int(request.GET['servings'])
     except:
-        total_persons = 1
+        total_persons = 0
 
-# короткий путь - servings = int(request.GET.get('servings', '1'))
+    context = {
+        'omlet': {
+            'яйца, шт': 2,
+            'молоко, л': 0.1,
+            'соль, ч.л.': 0.5,
+        },
+        'pasta': {
+            'макароны, г': 0.3,
+            'сыр, г': 0.05,
+        },
+        'buter': {
+            'хлеб, ломтик': 1,
+            'колбаса, ломтик': 1,
+            'сыр, ломтик': 1,
+            'помидор, ломтик': 1,
+        },
+        'drunk_hamster': {
+            'хомяк, потолще': 1,
+            'вино, мл': 0.13,
+            'виски, мл': 0.2,
+            'водка, мл, повышаем градус': 0.3,
+        },
+    }
 
-    list_f = []
-    full_text = ''
-    for key, value in DATA.items():
-        if key == choose:
-            count = 0
+
+    list_f_1 = {
+    }
+    list_f_2 = {
+
+    }
+
+
+    for key, value in context.items():
+        if key == decision:
             for key_food, total in value.items():
-                count += 1                                        # нужен для красивого вывода, каждый пункт будет  1)   2)   3)
-                count_str = '|' + str(count) + ').  '
-                total_f_int = round((total * total_persons),2)    # отбросим после запятой числа (а то выдает много)
-                total_f_str = str(total_f_int)
-                list_f += count_str + key_food + ' в количестве: ' + total_f_str + '  .'
+                total += total * total_persons
+                list_f_2[key_food] = total
+                list_f_1['recepi'] = list_f_2
 
-            full_text += ''.join(list_f)     # собираем все в 1 строку для красивого и удобного вывода
-
-
-    return HttpResponse(f'Вы выбрали блюдо {choose} для готовки Вам необходимо: \n {full_text}')
-
-
-def index(request):
-   return render(request, 'calculator/index.html')
+    return render(request, 'calculator/index.html', list_f_1)
 
 
 
