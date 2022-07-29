@@ -92,9 +92,7 @@ def index(request, decision):
     list_f_1 = {
     }
     list_f_2 = {
-
     }
-
 
     for key, value in context.items():
         if key == decision:
