@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import path
-from calculator.views import dishes
+from calculator import views
 
 urlpatterns = [
-    path('dishes/', dishes),
+    path('<choose>', views.dishes, name='dishes'),
+    path('', views.index, name='index')
 ]
