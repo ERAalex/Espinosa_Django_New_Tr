@@ -23,19 +23,15 @@ DATA = {
 
 # ----  Вариант без создания шаблона -------
 
+
 def dishes(request, choose):
-    if total_persons == int(request.GET['servings']):
-        for key, value in DATA.items():
-            if key == choose:
-                for key_food, total in value.items():
-                    food = key_food
-                    total_food = total * total_persons
-        return HttpResponse(f'Вы выбрали блюдо {choose} для готовки Вам необходимо: {food} В количестве: {total_food}')
-    else:
-        for key, value in DATA.items():
-            if key == choose:
-                result = value
-                return HttpResponse(f'Вы выбрали блюдо {choose} для готовки Вам необходимо: {result}')
+    total_persons = int(request.GET['servings'])
+    for key, value in DATA.items():
+        if key == choose:
+            for key_food, total in value.items():
+                food = key_food
+                total_food = total * total_persons
+    return HttpResponse(f'Вы выбрали блюдо {choose} для готовки Вам необходимо: {food} В количестве: {total_food}')
 
 
 def index(request):
