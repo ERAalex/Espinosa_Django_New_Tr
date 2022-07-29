@@ -17,7 +17,12 @@ DATA = {
         'сыр, ломтик': 1,
         'помидор, ломтик': 1,
     },
-    # можете добавить свои рецепты ;)
+    'drunk_hamster': {
+        'хомяк, потолще': 1,
+        'вино, мл': 1,
+        'виски, мл': 1,
+        'водка, мл, повышаем градус': 1,
+    },
 }
 
 
@@ -32,12 +37,22 @@ def dishes(request, choose):
 
 # короткий путь - servings = int(request.GET.get('servings', '1'))
 
+    list_f = []
+    full_text = ''
     for key, value in DATA.items():
         if key == choose:
+            count = 0
             for key_food, total in value.items():
-                food = key_food
-                total_food = total * total_persons
-    return HttpResponse(f'Вы выбрали блюдо {choose} для готовки Вам необходимо: {food} В количестве: {total_food}')
+                count += 1                                        # нужен для красивого вывода, каждый пункт будет  1)   2)   3)
+                count_str = '|' + str(count) + ').  '
+                total_f_int = round((total * total_persons),2)    # отбросим после запятой числа (а то выдает много)
+                total_f_str = str(total_f_int)
+                list_f += count_str + key_food + ' в количестве: ' + total_f_str + '  .'
+
+            full_text += ''.join(list_f)     # собираем все в 1 строку для красивого и удобного вывода
+
+
+    return HttpResponse(f'Вы выбрали блюдо {choose} для готовки Вам необходимо: \n {full_text}')
 
 
 def index(request):
