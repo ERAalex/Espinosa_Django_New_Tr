@@ -25,7 +25,13 @@ DATA = {
 
 
 def dishes(request, choose):
-    total_persons = int(request.GET['servings'])
+    try:
+        total_persons = int(request.GET['servings'])
+    except:
+        total_persons = 1
+
+# короткий путь - servings = int(request.GET.get('servings', '1'))
+
     for key, value in DATA.items():
         if key == choose:
             for key_food, total in value.items():
