@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Директория файлов</title>
+</head>
+<body>
+
+Файлы доступные по интересуемому каталогу:
+<br>
+{% for file in show_files %}
+<br>
+{{file}}
+<br>
+
+{% endfor %}
+
+<br>
+<br>
+  <a href="{% url 'home' %}">Вернуться назад</a>
+<br>
+
+</body>
+</html>
