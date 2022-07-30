@@ -55,6 +55,9 @@ DATA = {
 #   return HttpResponse(f'Вы выбрали блюдо {choose} для готовки Вам необходимо: \n {full_text}')
 
 
+def start(request):
+    return render(request, 'calculator/start.html')
+
 
 
 
@@ -88,7 +91,6 @@ def index(request, decision):
         },
     }
 
-
     list_f_1 = {
     }
     list_f_2 = {
@@ -97,7 +99,7 @@ def index(request, decision):
     for key, value in context.items():
         if key == decision:
             for key_food, total in value.items():
-                total += total * total_persons
+                total = round((total * total_persons),2)  # окрулим, иначе будет 100500 после запятой
                 list_f_2[key_food] = total
                 list_f_1['recepi'] = list_f_2
 

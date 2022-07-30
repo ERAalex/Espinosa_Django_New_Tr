@@ -1,50 +1,36 @@
-{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ТВОЯ КУХНЯ</title>
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <link rel="stylesheet" href="{% static 'css/poyavlenie.css' %}">
+    <title>START PAGE ALEX</title>
+    <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="static/css/poyavlenie.css">
+
 
 </head>
 
 
 <body>
-
     <div class="header_glav">
             <div class="logohead">
-                <img class="logo_gl" src="{% static 'img/logoglav.jpg'%}">
+                <img class="logo_gl" src="static/img/logoglav.jpg">
             </div>
         </div>
 
 
         <div class="polosa_negro">
             <div class="polosa_negro_text">
-                <h1 class="marquee"><span>Только самые вкусные блюда от нашего шеф-повара- Эспиноса Александра, попробуй пьяного хомяка!</span></h1>
+                <h1 class="marquee"><span>Только самые вкусные блюда от нашего шеф-повара- Эспиноса Александр, попробуй пьяного хомяка!</span></h1>
             </div>
         </div>
 
         <div class="wallpaper">
-            <img class="wall_foto" src="{% static 'img/centr_img2.jpg'%}">
+            <img class="wall_foto" src="static/img/centr_img2.jpg">
         </div>
     </div>
 
     <div class="intro_text">
-
-        Для приготовления блюда Вам нужно:
-
-    {% for ingredient, amount in recepi.items %}
-        <p>{{ ingredient }} : {{ amount }} </p>
-    {% empty %}
-        <p>Такого рецепта не знаю :(</p>
-    {% endfor %}
- <br> <br> <br>
-
-
-
-
 
         Набери в http запросе   блюда из доступных:
         <br>
