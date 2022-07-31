@@ -65,7 +65,7 @@ def index(request, decision):
     try:
         total_persons = int(request.GET['servings'])
     except:
-        total_persons = 0
+        total_persons = 1
 
     context = {
         'omlet': {
@@ -99,7 +99,7 @@ def index(request, decision):
     for key, value in context.items():
         if key == decision:
             for key_food, total in value.items():
-                total = round((total * total_persons),2)  # окрулим, иначе будет 100500 после запятой
+                total = round((total * total_persons), 2)  # окрулим, иначе будет 100500 после запятой
                 list_f_2[key_food] = total
                 list_f_1['recepi'] = list_f_2
 
