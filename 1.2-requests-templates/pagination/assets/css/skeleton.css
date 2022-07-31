@@ -28,6 +28,22 @@
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.cell_print{
+background: yellow;
+width: 300px;
+
+}
+
+.cell_base{
+background: green;
+width: 300px;
+
+}
+
+
+
+
 .container {
   position: relative;
   width: 100%;

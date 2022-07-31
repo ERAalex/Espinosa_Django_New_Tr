@@ -25,27 +25,33 @@
         <table class="u-full-width">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Street</th>
-                <th>District</th>
+                <th class="cell_print">Name</th>
+                <th class="cell_print">Street</th>
+                <th class="cell_print">District</th>
             </tr>
+
+
             </thead>
+
+
+
+
             <tbody>
-
-            <th>
-
-            {% for station in total %}
+            {% for station in Name %}
                 <tr>
-                    <td>{{ station.Name }}</td>
+                    <td>{{station.Name}}</td>
                     <td>{{ station.Street }}</td>
                     <td>{{ station.District }}</td>
                 </tr>
             {% endfor %}
-            </th>
-
-
             </tbody>
         </table>
+
+
+        </table>
+
+        </table>
+
 
 
             </tbody>
