@@ -4,13 +4,13 @@ from django.utils.text import slugify
 
 
 class Phone(models.Model):
-    id_mod = models.CharField(max_length=60, blank=True)
+    id = models.CharField(max_length=60, primary_key=True)
     name = models.CharField(max_length=60, blank=True)
     image = models.ImageField(upload_to='static/img', blank=True)
     price = models.CharField(max_length=60, blank=True)
     release_date = models.CharField(max_length=60, blank=True)
-    lte_exists = models.BooleanField(default=False)
-    slug = models.SlugField(unique=True, blank=True)
+    lte_exists = models.CharField(max_length=60, blank=True)
+    slug = models.SlugField(blank=True)
 
 
     def save(self, *args, **kwargs):
