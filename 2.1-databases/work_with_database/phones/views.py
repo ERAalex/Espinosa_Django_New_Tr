@@ -1,13 +1,18 @@
 from django.shortcuts import render, redirect
+from phones.models import Phone
 
 
 def index(request):
     return redirect('catalog')
 
 
+
+
 def show_catalog(request):
     template = 'catalog.html'
-    context = {}
+    Phones = Phone.objects.all
+    context = {'ds':'dsd', 'name' : Phone.name, 'price' : Phone.price}
+
     return render(request, template, context)
 
 
