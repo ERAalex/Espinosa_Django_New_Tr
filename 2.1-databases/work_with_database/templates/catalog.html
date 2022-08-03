@@ -12,17 +12,20 @@
       <h1>Каталог</h1>
     </div>
 
+
+
+
     <div class="sort-block">
       <span class="sort-item">Сортировать по:</span>
-      <a class="sort-item" href="?sort=name">названию</a>
-      <a class="sort-item" href="?sort=min_price">начиная с дешёвых</a>
-      <a class="sort-item" href="?sort=max_price">начиная с дорогих</a>
+      <a class="sort-item" href="{% url 'sort_by_name' %}">названию</a>
+      <a class="sort-item" href="{% url 'sort_by_price_max' %}">начиная с дешёвых</a>
+      <a class="sort-item" href="{% url 'sort_by_price_min' %}">начиная с дорогих</a>
     </div>
 
 
 
-
     <div class="content">
+
 
       {% for phone in context %}
         <div class="phone">
