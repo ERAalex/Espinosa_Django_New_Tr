@@ -23,12 +23,8 @@
 
 
     <div class="content">
-      {% for z in context.items %}
-          {{z.ds}}
-      {% endfor %}
 
-
-      {% for phone in Phones.items %}
+      {% for phone in context %}
         <div class="phone">
 
 
