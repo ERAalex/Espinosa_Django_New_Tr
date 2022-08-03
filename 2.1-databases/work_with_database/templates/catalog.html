@@ -27,13 +27,13 @@
       {% for phone in context %}
         <div class="phone">
 
-
             <h3>{{ phone.name }}</h3>
           </a>
           <div class="price">Стоимость: {{ phone.price }} ₽</div>
           <img height="400" src="{{ phone.image }}" alt="{{ phone.name }}"/>
         </div>
       {% endfor %}
+
     </div>
   </div>
 {% endblock %}
