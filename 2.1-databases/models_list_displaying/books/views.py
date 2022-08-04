@@ -25,4 +25,8 @@ def sort_date_new(request):
     return render(request, template, {'context' : context})
 
 
+def show_book(request, slug):
+    template = 'books/books_list.html'
+    context = Book.objects.filter(pub_date=slug)
+    return render(request, template, {'context' : context})
 
