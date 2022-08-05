@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Каталог книг{% endblock %}
+{% block content %}
+
+
+    <div class="container">
+        <div class="header">
+
+    <div class="container">
+        <div class="header">
+            <h1><a href="{% url 'books' %}">Каталог</a></h1>
+        </div>
+
+
+
+
+        {% for book in context %}
+        <div class="row">
+            <div class="book col-md-4">
+                <h2>Название книги: {{ book.name }}</h2>
+                <p>Автор: {{ book.author }}</p>
+                <p>Дата публикации: {{ book.pub_date }} </p>
+
+
+                <p>Внимание ---  {{ yes }} </p>
+
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+
+
+
+        <div class="row">
+            <div class="book col-md-4">
+                {% for book in book_show %}
+                    <p>{{ book.name}}</p>
+                    <p>{{ book.author }}</p>
+                    <p>{{ book.pub_date }}
+                {% endfor %}
+
+            </div>
+
+
+
+
+      {% if book_show.has_other_pages %}
+  <ul class="pagination">
+    {% if book_show.has_previous %}
+      <li><a href="?page={{ book_show.previous_page_number }}">назад;</a></li>
+    {% else %}
+      <li class="disabled"><span>впереquo;</span></li>
+    {% endif %}
+
+
+
+    {% for i in book_show.paginator.page_range %}
+      {% if book_show.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+
+
+    {% if book_show.has_next %}
+      <li><a href="?page={{ book_show.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+
+
+
+{% endblock %}
