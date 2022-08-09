@@ -5,9 +5,9 @@ from .models import Teacher, Student
 
 def students_list(request):
     template = 'school/students_list.html'
-    student = Student.objects.all()
+    students = Student.objects.all()
     teacher = Teacher.objects.all()
-    context = {'student': student, 'teacher': teacher}
+    context = {'students': students, 'teacher': teacher}
 
     # используйте этот параметр для упорядочивания результатов
     # https://docs.djangoproject.com/en/2.2/ref/models/querysets/#django.db.models.query.QuerySet.order_by
