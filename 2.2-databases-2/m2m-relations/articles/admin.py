@@ -7,6 +7,7 @@ class ScopeDecisionInline(admin.TabularInline):
     model = ScopeDecision
     extra = 3
 
+
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', )
@@ -14,5 +15,5 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(Categories)
 class CategoriesAdmin(admin.ModelAdmin):
-    list_display = ('scope', )
+    list_display = ('scope',)
 

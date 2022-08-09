@@ -9,6 +9,8 @@ class Categories(models.Model):
         verbose_name = 'Категории'
         verbose_name_plural = 'Категории'
 
+    def __str__(self):
+        return self.scope
 
 class Article(models.Model):
 
@@ -27,4 +29,8 @@ class Article(models.Model):
 class ScopeDecision(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='positions')
     categories = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name='positions')
-    is_main = models.BooleanField(default=False, verbose_name='Главная')
+    is_main = models.BooleanField(default=False, verbose_name='Основной')
+
+    class Meta:
+        verbose_name = 'Тематики раздела'
+        verbose_name_plural = 'Тематики раздела'
