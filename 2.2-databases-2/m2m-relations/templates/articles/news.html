@@ -18,8 +18,13 @@
             </h4>
             <p class="card-text">{{ article.text }}</p>
 
-            {% for scope in article.scopes.all %}
-              <span class="badge {% if scope.is_main %}badge-primary{% else %}badge-secondary{% endif %}">{{ scope.tag.name }}</span>
+
+
+<!-- Генианльное решение как отсортировать внутри html вложенную модель
+    надо больше прочитать https://docs.djangoproject.com/en/dev/ref/templates/builtins/#std:templatefilter-dictsort
+    -->
+            {% for scope in article.positions.all|dictsortreversed:"is_main" %}
+              <span class="badge {% if scope.is_main %}badge-primary{% else %}badge-secondary{% endif %}">{{ scope.categories.scope }}</span>
             {% endfor %}
 
           </div>
