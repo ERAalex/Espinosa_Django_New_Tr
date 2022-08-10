@@ -5,7 +5,7 @@ from .models import Teacher, Student
 
 def students_list(request):
     template = 'school/students_list.html'
-    students = Student.objects.all()
+    students = Student.objects.all().prefetch_related('teachers')
     teacher = Teacher.objects.all()
     context = {'students': students, 'teacher': teacher}
 
