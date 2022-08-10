@@ -1,7 +1,5 @@
 from django.shortcuts import render
-
 from articles.models import Article, ScopeDecision
-
 
 def articles_list(request):
     template = 'articles/news.html'

@@ -1,11 +1,10 @@
 from django.contrib import admin
 from .models import Article, Categories, ScopeDecision
 
-
-
 class ScopeDecisionInline(admin.TabularInline):
     model = ScopeDecision
-    extra = 3
+    min_num = 1
+    extra = 1
 
 
 @admin.register(Article)
