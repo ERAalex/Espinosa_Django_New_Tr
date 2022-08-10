@@ -7,4 +7,7 @@ def articles_list(request):
     order_scope = ScopeDecision.objects.all().order_by('is_main')
     context = {'object_list': object_list, 'order_scope': order_scope}
 
+
+
+
     return render(request, template, context)
