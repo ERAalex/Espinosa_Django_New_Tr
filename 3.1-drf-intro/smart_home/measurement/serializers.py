@@ -16,9 +16,17 @@ class MeasurementSerializer(serializers.ModelSerializer):
 
 
 
+# Болванка с нужным выводом для SensorDetail (Следующий ниже Serializer)
+class Meas_for_SensorSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Measurement
+        fields = ['temperature', 'created_at']
+
+
 # изменение, удаление счетчика + полная инфа по счетчику
 class SensorDetail(serializers.ModelSerializer):
-    measurements = MeasurementSerializer(read_only=True, many=True)  #### !!! ТУТ ЯВНО СВЯЗЬ, т.е. надо связать 2 таблицы в models. Foreign например
+    measurements = Meas_for_SensorSerializer(read_only=True, many=True)  #### !!! ТУТ СВЯЗЬ,  2 таблицы в models. Foreign
 
     class Meta:
         model = Sensor

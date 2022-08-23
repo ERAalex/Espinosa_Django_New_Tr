@@ -17,8 +17,6 @@ urlpatterns = [
 
     path('mes_create', Meas_Create.as_view()),  # Создать температуру, задать ID
 
-    # path('mes_up_del/<int:pk>', Meas_Update_Delete.as_view()),  # mes_temperature_изменение, удаление счетчика
-    #
 
 
 ]
