@@ -1,4 +1,5 @@
-
+from django.conf.urls.static import static
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from measurement.views import See_and_Create_All_Api, Count_Update_Delete, Meas_Create
@@ -17,9 +18,10 @@ urlpatterns = [
 
     path('mes_create', Meas_Create.as_view()),  # Создать температуру, задать ID
 
-
-
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
 
 #Обратите внимание на параметр pk URL-адреса. <int:pk>
 # Это имя, которое используется по умолчанию и фреймворком Django и Django REST для извлечения записи с id равным pk.
