@@ -9,6 +9,7 @@ class Sensor(models.Model):
     description = models.CharField(max_length=20, verbose_name='расположение датчика')
 
 class Measurement(models.Model):
+    sensor = models.ForeignKey(Sensor, on_delete= models.CASCADE, related_name="measurements", default=False)
     temperature = models.IntegerField()
     created_at = models.DateField(auto_now_add=True)
 

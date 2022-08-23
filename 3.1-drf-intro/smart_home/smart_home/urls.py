@@ -1,23 +1,24 @@
 
 from django.contrib import admin
 from django.urls import path, include
-from measurement.views import Count_List_Create, Count_Update_Delete, Meas_Update_Delete, Meas_Create
+from measurement.views import See_and_Create_All_Api, Count_Update_Delete, Meas_Create
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('api_create', Count_List_Create.as_view()), # создание счетчика
+    path('api_all', See_and_Create_All_Api.as_view()),  # Создать счетчик + вывести все счетчики, Краткая инфа
 
-    path('api/<int:pk>', Count_Update_Delete.as_view()),   # изменение, удаление счетчика
+
+    path('api/<int:pk>', Count_Update_Delete.as_view()),   # изменение, удаление счетчика + полная инфа по счетчику
 
 
     # MEASER
 
-    path('mes_create', Meas_Create.as_view()),  # mes_temperature_изменение, удаление счетчика
+    path('mes_create', Meas_Create.as_view()),  # Создать температуру, задать ID
 
-    path('mes_up_del/<int:pk>', Meas_Update_Delete.as_view()),  # mes_temperature_изменение, удаление счетчика
-
+    # path('mes_up_del/<int:pk>', Meas_Update_Delete.as_view()),  # mes_temperature_изменение, удаление счетчика
+    #
 
 
 ]
