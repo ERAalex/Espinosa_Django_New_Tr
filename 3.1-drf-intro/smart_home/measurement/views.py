@@ -28,7 +28,6 @@ class Meas_Create(generics.ListCreateAPIView):
     serializer_class = MeasurementSerializer
 
 
-
 class Meas_Update_Delete(generics.RetrieveUpdateDestroyAPIView):
     queryset = Measurement.objects.all()
     serializer_class = MeasurementSerializer

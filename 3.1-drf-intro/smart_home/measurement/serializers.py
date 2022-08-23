@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Measurement, Sensor
 from django.db import models
 
+
 # TODO: опишите необходимые сериализаторы
 
 
@@ -10,9 +11,11 @@ class MeasurementSerializer(serializers.ModelSerializer):
     # благодаря related_name='measurements наши модели связаны и я могу вызвать поля из Sensor (т.е. к какому счетчику отнести измерения)
     sensor = models.ForeignKey(Sensor, related_name='measurements', on_delete=models.CASCADE)
 
+    photo_url = serializers.ImageField(max_length=None, use_url=True, allow_null=True, required=False)
+
     class Meta:
         model = Measurement
-        fields = ['temperature', 'created_at', 'sensor' ]
+        fields = ['temperature', 'created_at', 'sensor', 'photo_url' ]
 
 
 
@@ -21,7 +24,7 @@ class Meas_for_SensorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Measurement
-        fields = ['temperature', 'created_at']
+        fields = ['temperature', 'created_at', 'photo_url']
 
 
 # изменение, удаление счетчика + полная инфа по счетчику
