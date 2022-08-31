@@ -10,7 +10,6 @@ from django.db import models
 class MeasurementSerializer(serializers.ModelSerializer):
     # благодаря related_name='measurements наши модели связаны и я могу вызвать поля из Sensor (т.е. к какому счетчику отнести измерения)
     sensor = models.ForeignKey(Sensor, related_name='measurements', on_delete=models.CASCADE)
-
     photo_url = serializers.ImageField(max_length=None, use_url=True, allow_null=True, required=False)
 
     class Meta:
