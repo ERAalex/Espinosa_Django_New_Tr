@@ -11,10 +11,8 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'description', 'stocks']
 
 
-# serializers.PrimaryKeyRelatedField - иначе в StockSerializer выдаст ошибку Lists are not currently supported in HTML input
 class ProductPositionSerializer(serializers.ModelSerializer):
-    stock = models.ForeignKey(Stock, related_name='positions', on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, related_name='positions', on_delete=models.CASCADE)
+
 
     class Meta:
         model = StockProduct
