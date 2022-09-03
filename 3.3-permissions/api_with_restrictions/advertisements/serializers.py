@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
 
+
 from advertisements.models import Advertisement
 
 
@@ -37,11 +38,15 @@ class AdvertisementSerializer(serializers.ModelSerializer):
     # создаем лимит на созданные объекты от пользователя на количество статей
     def validate(self, data):
 
-        # получаем переменную с нашим пользователем отправившим request (чтобы потом связать объекты именно от этого пользователя)
-        user = self.context['request'].user
-        # фильтруем объекты по параметру, который нас интересует + убеждаемся, что объекты имменно от пользователся creator=user,
-        already_open_offers = Advertisement.objects.filter(creator=user, status="OPEN")
-        if already_open_offers.count() > 10:
-            raise ValidationError('Вы уже создали 10 открытых объявлений, достигнут лимит!')
+        stat = data.get('status')
+        req = self.context['request'].method
+
+        if req == "POST" or stat == 'OPEN':
+            # получаем переменную с нашим пользователем отправившим request (чтобы потом связать объекты именно от этого пользователя)
+            user = self.context['request'].user
+            # фильтруем объекты по параметру, который нас интересует + убеждаемся, что объекты имменно от пользователся creator=user,
+            already_open_offers = Advertisement.objects.filter(creator=user, status="OPEN")
+            if already_open_offers.count() > 5:
+                raise ValidationError('Вы уже создали 10 открытых объявлений, достигнут лимит!')
 
         return data

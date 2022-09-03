@@ -1,5 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.viewsets import ModelViewSet
 from .models import Advertisement
 from advertisements.serializers import AdvertisementSerializer
@@ -15,7 +15,9 @@ class AdvertisementViewSet(ModelViewSet):
     queryset = Advertisement.objects.all()
 
     serializer_class = AdvertisementSerializer
-    permission_classes = [IsOwner]
+    #IsAuthenticatedOrReadOnly - позволит не зарегестрированным пользователям делать безопасные запросы:
+    # Get - например
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwner]
 
     filters_backends = [DjangoFilterBackend]
     filter_class = AdvertisementFilter
